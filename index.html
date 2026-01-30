@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Lover - Insumos Veterinarios y Accesorios</title>
+    <title>Pet Lover - Insumos Veterinarios y Accesorios 🐾</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   
 </head>
 <body>
 
     <div class="top-bar">
         <span class="marquee-text">¡Envíos gratis por compras sobre $30.000! 🐾</span>
     </div>
-
+     
     <nav class="navbar">
-        <div class="logo">PetLover</div>
+        <div class="logo">PetLover 🐾 </div>
         <ul class="nav-links">
             <li><a href="#">Inicio</a></li>
             <li><a href="#productos">Productos</a></li>
             <li><a href="#contacto">Contacto</a></li>
+         <li><a href="#productos" class="btn-main">Ver Catálogo</a></li>
+
         </ul>
+        
         <div class="cart-icon" onclick="toggleCart()">
             <i class="fas fa-shopping-cart"></i>
             <span id="cart-count">0</span>
@@ -29,36 +31,36 @@
 
     <section class="hero">
       <div class="hero-content">
-        <h1>Todo para tu mejor amigo</h1>
-        <p>Insumos para tu mascota de la más alta calidad</p>
-        <a href="#productos" class="btn-main">Ver Catálogo</a>
+        <h1>pet lover 🐾</h1>
+        <p>Insumos para tu mascota de la más alta calidad </p>
+        
       </div>
     </section>
 
     <section id="productos" class="products-section">
-        <h2>Nuestros Productos mas buscados </h2>
+        <h2>Nuestros Productos más buscados</h2>
         <div class="product-grid">
             <div class="product-card">
                 <div class="carousel">
                     <img src="https://www.amigales.cl/media/catalog/product/cache/629713204090c0e7213f3f646f843e1a/b/r/bravery_dog_senior_2.jpg" alt="Alimento Premium Perro">
                 </div>
-                <h3>Alimento Premium Perro bravery 4.kg </h3>
+                <h3>Alimento Premium Perro Bravery 4kg</h3>
                 <p class="price">$25.990</p>
                 <button class="add-to-cart" onclick="addToCart('Alimento Premium', 25990)">Agregar al carro</button>
             </div>
             <div class="product-card">
                 <div class="carousel">
-                    <img src="https://dojiw2m9tvv09.cloudfront.net/30336/product/X_simparica-trio-5-a-10-kg-1-comp-para-perros9648.jpg?105&t=1769622375" alt="Antiparasitario Externo">
+                    <img src="https://dojiw2m9tvv09.cloudfront.net/30336/product/X_simparica-trio-5-a-10-kg-1-comp-para-perros9648.jpg?105&t=1769622375" alt="Antiparasitario">
                 </div>
-                <h3>Antiparasitario Externo SIMPARICA TRÍO - 5 A 10 KG</h3>
-                <p class="price">$7.990</p>
+                <h3>Antiparasitario SIMPARICA TRÍO - 5 A 10 KG</h3>
+                <p class="price">$12.500</p>
                 <button class="add-to-cart" onclick="addToCart('Antiparasitario', 12500)">Agregar al carro</button>
             </div>
             <div class="product-card">
                 <div class="carousel">
                     <img src="https://cdnx.jumpseller.com/cody-store/image/26946821/resize/640/500?1662654305" alt="Collar Reflectivo">
                 </div>
-                <h3>Collar reflectivo led Carga Usb universal </h3>
+                <h3>Collar reflectivo led Carga Usb universal</h3>
                 <p class="price">$8.990</p>
                 <button class="add-to-cart" onclick="addToCart('Collar Reflectivo', 8990)">Agregar al carro</button>
             </div>
@@ -66,19 +68,77 @@
                 <div class="carousel">
                     <img src="https://www.amigales.cl/media/catalog/product/cache/5a453bbcf6069c8289aeb5e805e7ef39/d/o/dog_brick_1.jpg" alt="Juguete Interactivo">
                 </div>
-                <h3>Juguete Interactivo</h3>
-                <p class="price">$15.500</p>
-                <button class="add-to-cart" onclick="addToCart('Juguete Interactivo', 15500)">Agregar al carro</button>
+                <h3>Juguete Interactivo Dog Brick</h3>
+                <p class="price">$10.500</p>
+                <button class="add-to-cart" onclick="addToCart('Juguete Interactivo', 10500)">Agregar al carro</button>
             </div>
         </div>
-    </section>
+
+
+        <section class="pet-products">
+    <h2>Accesorios para tu mascota</h2>
+
+    <div class="pet-product-grid">
+
+        <div class="pet-card">
+            <img src="https://compralotodo.cl/wp-content/uploads/2025/12/D_794861-MLC100479918544_122025-F.jpg" alt="Cama para mascotas">
+            <h3>Cama acolchada premium</h3>
+            <p>Suave, cómoda y lavable</p>
+            <span class="pet-price">$22.990</span>
+            <button class="btn-add-cart"
+                onclick="addToCart('Cama acolchada premium', 22990)">
+                Agregar al carrito 
+            </button>
+        </div>
+
+        <div class="pet-card">
+            <img src="https://www.aon.es/personales/seguro-perro-gato/wp-content/uploads/sites/2/2023/04/cachorro-dachshund-juguete-aislado-1-scaled.jpg" alt="Juguete para perros">
+            <h3>Juguetes interactivos</h3>
+            <p>Estimula y entretiene</p>
+            <span class="pet-price">$5.990</span>
+            <button class="btn-add-cart"
+                onclick="addToCart('Juguetes interactivos', 5990)">
+                Agregar al carrito 
+            </button>
+        </div>
+
+        <div class="pet-card">
+            <img src="https://i.pinimg.com/736x/ba/5a/24/ba5a241651a6cda74509ca0cc9a6df4e.jpg" alt="Ropa para mascotas">
+            <h3>Ropa térmica invierno</h3>
+            <p>Abriga con estilo</p>
+            <span class="pet-price">$12.490</span>
+            <button class="btn-add-cart"
+                onclick="addToCart('Ropa térmica invierno', 12490)">
+                Agregar al carrito 
+            </button>
+        </div>
+
+        <div class="pet-card">
+            <img src="https://rimage.ripley.cl/home.ripley/Attachment/MKP/5629/MPM10001128469/full_image-1.png" alt="Plato para mascotas">
+            <h3>Plato antideslizante</h3>
+            <p>Ideal para comida y agua</p>
+            <span class="pet-price">$6.990</span>
+            <button class="btn-add-cart"
+                onclick="addToCart('Plato antideslizante', 6990)">
+                Agregar al carrito 
+            </button>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
 
     <div id="cart-sidebar" class="cart-sidebar">
-        <button class="close-cart" onclick="toggleCart()" title="Cerrar carrito">
+        <button class="close-cart" onclick="toggleCart()">
             <i class="fas fa-times"></i>
         </button>
         <h2>Tu Carrito</h2>
-        <div id="cart-items"></div>
+        <div id="cart-items">
+            </div>
         <div class="cart-total">
             <strong>Total: $<span id="cart-total">0</span></strong>
         </div>
@@ -89,36 +149,35 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-
     <section class="testimonios">
-    <h2>Lo que dicen nuestros clientes</h2>
-    <div class="testimonio-grid">
-        <div class="testimonio-card">
-            <p>"La mejor atención para mi perrito, los productos llegaron muy rápido."</p>
-            <span class="user-name">- Juan Pérez</span>
+        <h2>Lo que dicen nuestros clientes</h2>
+        <div class="testimonio-grid">
+            <div class="testimonio-card">
+                <p>"La mejor atención para mi perrito, los productos llegaron muy rápido."</p>
+                <span class="user-name">- Juan Pérez</span>
+            </div>
+            <div class="testimonio-card">
+                <p>"Excelente calidad en el alimento Bravery, 100% recomendado."</p>
+                <span class="user-name">- María G.</span>
+            </div>
         </div>
-        <div class="testimonio-card">
-            <p>"Excelente calidad en el alimento Bravery, 100% recomendado."</p>
-            <span class="user-name">- María G.</span>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section id="contacto" class="contacto-section">
-    <h2 style="text-align: center; margin-bottom: 30px;">Contáctanos</h2>
-    <form id="contact-form">
-        <input type="text" placeholder="Tu Nombre" required>
-        <input type="email" placeholder="Tu Correo" required>
-        <textarea rows="5" placeholder="¿En qué podemos ayudarte?"></textarea>
-        <button type="submit" class="btn-submit">Enviar Mensaje</button>
-    </form>
-</section>
+    <section id="contacto" class="contacto-section">
+        <h2 style="text-align: center; margin-bottom: 30px;">Escríbenos </h2>
+        <form id="contact-form">
+            <input type="text" placeholder="Tu Nombre" required>
+            <input type="email" placeholder="Tu Correo" required>
+            <textarea rows="5" placeholder="¿En qué podemos ayudarte?"></textarea>
+            <button type="submit" class="btn-submit">Enviar Mensaje</button>
+        </form>
+    </section>
 
-    <footer id="contacto">
+    <footer>
         <div class="footer-container">
             <div class="info">
                 <h4>Dirección</h4>
-                <p>Av. Ratón Peréz 323, Distrito Tundratown. Zootopia</p>
+                <p>Av. Ratón Pérez 323, Zootopia</p>
                 <h4>Horarios</h4>
                 <p>Lun - Vie: 09:00 - 19:00</p>
             </div>
@@ -127,16 +186,23 @@
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13317.553951554602!2d-70.6504502!3d-33.4372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2scl!4v1625612345678!5m2!1ses!2scl" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-        <button id="back-to-top" onclick="scrollToTop()" title="Volver arriba">
+           <div class="map-container">
+        <iframe
+        src="https://www.google.com/maps?q=Ñuñoa,+Santiago,+Chile&output=embed"
+        width="100%"
+        height="350"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+        <button id="back-to-top" onclick="scrollToTop()">
             <i class="fas fa-arrow-up"></i>
         </button>
     </footer>
 
-    <div id="toast" class="toast">¡Producto añadido con éxito!</div>
+    <div id="toast" class="toast">¡Producto añadido!</div>
 
     <script src="assets/js/script.js"></script>
 </body>

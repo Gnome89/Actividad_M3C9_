@@ -53,3 +53,387 @@ input, textarea, select {
     border-color: $accent-color;
   }
 }
+/* ======================================================
+   RESET Y CONFIGURACIÓN GLOBAL
+====================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  background: url("./assets/images/background_perros.jpg") repeat;
+  background-attachment: fixed;
+  background-color: #f8f9fa;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+:focus {
+  outline: 2px solid #e67e22;
+  outline-offset: 2px;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #e67e22;
+}
+
+main {
+  min-height: calc(100vh - 200px);
+}
+
+/* ======================================================
+   ANIMACIONES
+====================================================== */
+
+@keyframes marquee-train {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes moverBanner {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes fadein {
+  from { bottom: 0; opacity: 0; }
+  to { bottom: 30px; opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { bottom: 30px; opacity: 1; }
+  to { bottom: 0; opacity: 0; }
+}
+
+/* ======================================================
+   TOP BAR
+====================================================== */
+
+.top-bar {
+  width: 100%;
+  overflow: hidden;
+  background: #b1dbe3;
+  padding: 8px 0;
+}
+
+.marquee-text {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: marquee-train 18s linear infinite;
+}
+
+/* ======================================================
+   NAVBAR
+====================================================== */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background: rgba(255, 255, 255, 0.98);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #f97807;
+}
+
+/* ======================================================
+   HERO
+====================================================== */
+
+.hero {
+  min-height: 550px;
+  height: 70vh;
+  background: url("../assets/images/hero_banner.png") center / contain no-repeat;
+  background-color: #f5f5f526;
+  display: flex;
+  align-items: center;
+  padding-left: 8%;
+}
+
+.hero-content {
+  max-width: 450px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-content h1 {
+  color: #075169;
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* BOTÓN HERO */
+.hero-content .btn-main {
+  background: #93c6b8;
+  color: #fff;
+  border-radius: 999px;
+  padding: 12px 36px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.hero-content .btn-main:hover {
+  background: #78b5a4;
+  transform: scale(1.05);
+}
+
+/* ======================================================
+   PRODUCTOS
+====================================================== */
+
+.products-section,
+.pet-products {
+  padding: 80px 5%;
+  background: #f5fbf9;
+}
+
+.product-grid,
+.pet-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.product-card,
+.pet-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  transition: transform .3s ease;
+}
+
+.product-card:hover,
+.pet-card:hover {
+  transform: translateY(-10px);
+}
+
+.pet-card img {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.pet-price {
+  font-size: 1.5rem;
+  color: #e27f0f;
+  font-weight: bold;
+}
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+footer {
+  background: #2c3e50;
+  color: white;
+  padding: 50px 5%;
+  margin-top: 60px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.contacto-section {
+    padding: 80px 5%;
+    background: linear-gradient(135deg, #ffe6ee, #ffffff);
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: #ff7aa2;
+    box-shadow: 0 0 0 3px rgba(255,122,162,0.2);
+}
+
+.btn-submit {
+    background: #ff7aa2;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 999px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-submit:hover {
+    background: #ff5c8a;
+    transform: translateY(-2px);
+}
+
+
+.btn-add-cart {
+    margin-top: 15px;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    background: #93c6b8;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-add-cart:hover {
+    background: #7fb4a5;
+    transform: scale(1.03);
+}
+
+/* TOAST */
+.toast {
+  visibility: hidden;
+  max-width: 260px;        /* 🔽 más angosto */
+  padding: 6px 12px;      /* 🔽 menos padding */
+  background-color: #1f917c;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 6px;
+  position: fixed;
+  z-index: 2000;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;      /* 🔽 texto más chico */
+  line-height: 1.3;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.toast.show {
+  visibility: visible;
+  animation: fadein 0.35s ease, fadeout 0.35s ease 2.6s;
+}
+
+
+.testimonios { padding: 80px 5%; background: #f9fafb; text-align: center; }   
+
+
+.testimonios h2 { font-size: 2rem; margin-bottom: 40px; color: #333; } 
+.testimonio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1000px; margin: auto; } 
+.testimonio-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative; transition: transform 0.3s ease; } 
+.testimonio-card:hover { transform: translateY(-6px); } 
+.testimonio-card p { font-style: italic; color: #555; margin-bottom: 15px; } 
+.testimonio-card 
+.user-name { font-weight: bold; color: #117568; } 
+
+.testimonio-card::before { content: "❝"; font-size: 3rem; color: #7afff6; position: absolute; top: 10px; left: 15px; } /*formulario*/ 
+.contacto-section { padding: 80px 5%; background: linear-gradient(135deg, #94dee466, #ffffff); } 
+#contact-form { max-width: 600px; margin: auto; background: white; padding: 40px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 20px; } 
+#contact-form input, 
+#contact-form textarea { padding: 14px 18px; border-radius: 12px; border: 1px solid #ddd; font-size: 1rem; transition: border 0.3s, box-shadow 0.3s; } 
+#contact-form input:focus, 
+#contact-form textarea:focus { outline: none; border-color: #93c6b8; box-shadow: 0 0 0 3px rgba(255,122,162,0.2); } 
+.btn-submit { background: #26949c; color: white; border: none; padding: 14px; border-radius: 999px; font-size: 1rem; cursor: pointer; transition: background 0.3s, transform 0.2s; }
+
+

@@ -1,191 +1,193 @@
-// ============================================================
-// VARIABLES GLOBALES Y FUNCIONALIDAD DEL CARRITO
-// ============================================================
-
+/* =========================
+   VARIABLES GLOBALES
+========================= */
+let cartItems = {};
 let cartCount = 0;
-let cartItems = [];
 let cartTotal = 0;
 
-// Mapeo de precios de productos
-const productPrices = {
-    'Alimento Premium': 25990,
-    'Antiparasitario': 12500,
-    'Collar Reflectivo': 8990,
-    'Juguete Interactivo': 15500
-};
-
-// ============================================================
-// FUNCIONES DEL CARRITO
-// ============================================================
-
-// Función para mostrar/ocultar carrito
+/* =========================
+   ABRIR / CERRAR CARRITO
+========================= */
 function toggleCart() {
     const sidebar = document.getElementById('cart-sidebar');
-    if (sidebar) {
-        sidebar.classList.toggle('active');
-    }
+    if (!sidebar) return;
+    sidebar.classList.toggle('active');
 }
 
-// Agregar al carrito y lanzar Toast
+/* =========================
+   AGREGAR AL CARRITO
+========================= */
 function addToCart(productName, price) {
-    cartCount++;
-    cartItems.push({ name: productName, price: price });
-    cartTotal += price;
-    
-    const cartCountEl = document.getElementById('cart-count');
-    if (cartCountEl) {
-        cartCountEl.innerText = cartCount;
+    if (!cartItems[productName]) {
+        cartItems[productName] = {
+            name: productName,
+            price: price,
+            qty: 1
+        };
+    } else {
+        cartItems[productName].qty++;
     }
-    
+
+    cartCount++;
+    cartTotal += price;
+
+    document.getElementById('cart-count').innerText = cartCount;
     updateCartDisplay();
-    showToast(`¡${productName} agregado al carrito!`);
+    showToast(`¡${productName} agregado! 🐾`);
 }
 
-// Actualizar visualización del carrito
+/* =========================
+   QUITAR UNA UNIDAD
+========================= */
+function removeFromCart(productName) {
+    if (!cartItems[productName]) return;
+
+    cartItems[productName].qty--;
+    cartCount--;
+    cartTotal -= cartItems[productName].price;
+
+    if (cartItems[productName].qty <= 0) {
+        delete cartItems[productName];
+    }
+
+    document.getElementById('cart-count').innerText = cartCount;
+    updateCartDisplay();
+    showToast("Producto eliminado 🗑️");
+}
+
+/* =========================
+   RENDER DEL CARRITO
+========================= */
 function updateCartDisplay() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotalEl = document.getElementById('cart-total');
-    
-    if (!cartItemsContainer) return;
-    
-    if (cartItems.length === 0) {
-        cartItemsContainer.innerHTML = '<p style="color: #666; text-align: center; padding: 20px 0;">Tu carrito está vacío</p>';
-        if (cartTotalEl) {
-            cartTotalEl.innerText = '0';
-        }
+    const container = document.getElementById('cart-items');
+    const totalEl = document.getElementById('cart-total');
+
+    if (!container || !totalEl) return;
+
+    if (Object.keys(cartItems).length === 0) {
+        container.innerHTML = '<p style="text-align:center; padding:20px;">Tu carrito está vacío</p>';
+        totalEl.innerText = '0';
         return;
     }
-    
-    const itemCounts = {};
-    cartItems.forEach(item => {
-        if (!itemCounts[item.name]) {
-            itemCounts[item.name] = { count: 0, price: item.price };
-        }
-        itemCounts[item.name].count++;
-    });
-    
-    let html = '';
-    for (const [itemName, itemData] of Object.entries(itemCounts)) {
-        const subtotal = itemData.price * itemData.count;
-        html += `<div class="cart-item">
-                    <div class="cart-item-info">
-                        <span class="cart-item-name">${itemName}</span>
-                        <span class="cart-item-price">$${itemData.price.toLocaleString('es-CL')}</span>
-                    </div>
-                    <div class="cart-item-controls">
-                        <span class="cart-item-count">x${itemData.count}</span>
-                        <button class="btn-remove-item" onclick="event.stopPropagation(); removeFromCart('${itemName}', event)" title="Eliminar">×</button>
-                    </div>
-                 </div>`;
-    }
-    
-    cartItemsContainer.innerHTML = html;
-    
-    if (cartTotalEl) {
-        cartTotalEl.innerText = cartTotal.toLocaleString('es-CL');
-    }
+
+    container.innerHTML = Object.values(cartItems).map(item => `
+        <div class="cart-item" onclick="event.stopPropagation()">
+            <div class="cart-item-info">
+                <span class="cart-item-name">${item.name}</span>
+                <span class="cart-item-price">
+                    $${item.price.toLocaleString('es-CL')} x ${item.qty}
+                </span>
+            </div>
+            <button class="btn-remove-item"
+                onclick="removeFromCart('${item.name}'); event.stopPropagation();">
+                ×
+            </button>
+        </div>
+    `).join('');
+
+    totalEl.innerText = cartTotal.toLocaleString('es-CL');
 }
 
-// Eliminar item del carrito
-function removeFromCart(itemName, event) {
-    if (event) {
-        event.stopPropagation();
-    }
-    
-    const index = cartItems.findIndex(item => item.name === itemName);
-    if (index > -1) {
-        const removedItem = cartItems[index];
-        cartItems.splice(index, 1);
-        cartTotal -= removedItem.price;
-        cartCount--;
-        
-        const cartCountEl = document.getElementById('cart-count');
-        if (cartCountEl) {
-            cartCountEl.innerText = cartCount;
-        }
-        
-        updateCartDisplay();
-        showToast(`${itemName} eliminado del carrito`);
-    }
-}
-
-// ============================================================
-// FUNCIONES DE NOTIFICACIÓN
-// ============================================================
-
-// Mostrar notificación Toast
+/* =========================
+   TOAST
+========================= */
 function showToast(message) {
     const toast = document.getElementById("toast");
     if (!toast) return;
-    
+
     toast.innerText = message;
-    toast.className = "toast show";
-    setTimeout(() => { 
-        toast.className = toast.className.replace("show", "").trim(); 
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
     }, 3000);
 }
 
-// ============================================================
-// BOTÓN DE RETORNO AL INICIO
-// ============================================================
-
-window.addEventListener('scroll', function() {
-    const btn = document.getElementById("back-to-top");
-    if (!btn) return;
-    
-    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-    
-    if (scrollTop > 300) {
-        btn.classList.add('visible');
-    } else {
-        btn.classList.remove('visible');
-    }
-}, { passive: true });
-
-// Función para volver al inicio
-function scrollToTop() {
-    window.scrollTo({ 
-        top: 0, 
-        behavior: 'smooth' 
-    });
-}
-
-// ============================================================
-// MANEJO DE EVENTOS DEL CARRITO
-// ============================================================
-
-// Cerrar carrito al hacer clic en el fondo
-document.addEventListener('click', function(event) {
-    const cartSidebar = document.getElementById('cart-sidebar');
+/* =========================
+   CERRAR AL CLIC FUERA
+========================= */
+document.addEventListener('click', (e) => {
+    const sidebar = document.getElementById('cart-sidebar');
     const cartIcon = document.querySelector('.cart-icon');
-    
-    if (cartSidebar && !cartSidebar.contains(event.target) && !cartIcon.contains(event.target)) {
-        if (cartSidebar.classList.contains('active')) {
-            cartSidebar.classList.remove('active');
+
+    if (!sidebar || !cartIcon) return;
+
+    if (sidebar.classList.contains('active')) {
+        if (!sidebar.contains(e.target) && !cartIcon.contains(e.target)) {
+            sidebar.classList.remove('active');
         }
     }
 });
-
-// Evento para finalizar compra
-document.addEventListener('DOMContentLoaded', function() {
+/* =========================
+   FINALIZAR COMPRA
+========================= */
+document.addEventListener('DOMContentLoaded', () => {
     const checkoutBtn = document.getElementById('btn-checkout');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            if (cartItems.length === 0) {
-                showToast('Tu carrito está vacío');
-                return;
-            }
-            
-            showToast('Te redirigiremos al área de pago...');
-            
-            setTimeout(function() {
-                const cartSidebar = document.getElementById('cart-sidebar');
-                if (cartSidebar) {
-                    cartSidebar.classList.remove('active');
-                }
-            }, 1500);
-        });
-    }
+
+    if (!checkoutBtn) return;
+
+    checkoutBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        if (cartCount === 0) {
+            showToast("Tu carrito está vacío 🛒");
+            return;
+        }
+
+        // Mensaje de pago
+        showToast("Gracias por tu compra 💳✨ Te llevaremos al sitio de pago...");
+
+        // Simulamos redirección bancaria 🏦
+        setTimeout(() => {
+            // Vaciar carrito
+            cartItems = {};
+            cartCount = 0;
+            cartTotal = 0;
+
+            document.getElementById('cart-count').innerText = 0;
+            updateCartDisplay();
+
+            // Cerrar carrito
+            document.getElementById('cart-sidebar').classList.remove('active');
+        }, 2000);
+    });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        showToast("Gracias por tu mensaje, nos contactaremos en breve 🐾");
+        form.reset();
+    });
+});
+
+
+/* =====================
+   SCROLL TO TOP ()
+===================== */
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =====================
+   TOAST GLOBAL
+===================== */
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    if (!toast) return;
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
+
+
